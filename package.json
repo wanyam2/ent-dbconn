@@ -1,14 +1,21 @@
 {
-  "name": "${PROJECT_NAME}",
+  "name": "ent-dbconn",
   "version": "1.0.0",
   "description": "",
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc"
   },
-  "dependencies": {},
+  "dependencies": {
+    "@types/pg": "^8.11.10",
+    "dotenv": "^16.4.7",
+    "mybatis-mapper": "^0.8.0",
+    "pg": "^8.13.1",
+    "readline": "^1.3.0"
+  },
   "devDependencies": {
-    "typescript": "^5.5.3"
+    "@types/bun": "latest",
+    "typescript": "^5.7.3"
   },
   "private": true
 }

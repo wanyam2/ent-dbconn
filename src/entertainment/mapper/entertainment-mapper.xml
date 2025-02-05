@@ -1,0 +1,53 @@
+<mapper namespace="com.example.myBatis.entertainmentService">
+
+    <!-- Department -->
+    <select id="getAllDepartments" resultType="Department">
+        SELECT dept_code, dept_name, dept_loc FROM department
+    </select>
+
+    <select id="getDepartmentByCode" parameterType="String" resultType="Department">
+        SELECT dept_code, dept_name, dept_loc FROM department WHERE dept_code = #{dept_code}
+    </select>
+
+    <!-- Employee -->
+    <select id="getEmployeeDetails" resultType="Employee">
+        SELECT emp_code, emp_name, emp_mgt, emp_sal FROM employee
+    </select>
+
+    <select id="getEmployeeByCode" parameterType="String" resultType="Employee">
+        SELECT emp_code, emp_name, emp_mgt, emp_sal FROM employee WHERE emp_code = #{emp_code}
+    </select>
+
+    <select id="getEmployeeByName" parameterType="String" resultType="Employee">
+        SELECT emp_code, emp_name, emp_mgt, emp_sal FROM employee WHERE emp_name = #{name}
+    </select>
+
+    <select id="getDramasByProducer" parameterType="String" resultType="Drama">
+        SELECT drm_code, drm_name, drm_prd, drm_brd, drm_opdate FROM drama WHERE drm_prd = #{producer}
+    </select>
+
+    <select id="getDramasByChannel" parameterType="String" resultType="Drama">
+        SELECT drm_code, drm_name, drm_prd, drm_brd, drm_opdate FROM drama WHERE drm_brd = #{channel}
+    </select>
+
+    <select id="getDramasWithoutAirDate" resultType="Drama">
+        SELECT drm_code, drm_name, drm_prd, drm_brd, drm_opdate FROM drama WHERE drm_opdate IS NULL
+    </select>
+
+    <!-- Insert, Update, Delete -->
+    <insert id="addExecutive" parameterType="Employee">
+        INSERT INTO employee (emp_code, emp_name, emp_mgt, emp_sal)
+        VALUES (#{emp_code}, #{emp_name}, 'Executive', #{emp_sal})
+    </insert>
+
+    <update id="promoteEmployee" parameterType="String">
+        UPDATE employee
+        SET dept_name = 'R003', emp_sal = emp_sal * 1.1
+        WHERE emp_name = #{dept_name}
+    </update>
+
+    <delete id="removeEmployee" parameterType="String">
+        DELETE FROM employee WHERE emp_name = #{empName}
+    </delete>
+
+</mapper>
